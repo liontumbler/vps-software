@@ -2,39 +2,42 @@
   
   <div class="row">
 
-    <div class="col-sm-6">
+    <div class="col-md-12 text-center">
+      <h4>{{ respuesta }}</h4>
+    </div>
+
+    <div class="col-md-6">
       <h1>P1 {{ player1 }}</h1>
 
       <div class="form-group">
         <span class="input-group-text" id="player1">Name:</span>
       </div>
-      <input class="form-control" type="text" aria-label="Default" aria-describedby="player1" ng-model="player1" placeholder="Nombre player 1">
+      <input uib-popover="Pon el nombre del jugador P1"  popover-trigger="'focus'" class="form-control" type="text" aria-label="Default" aria-describedby="player1" ng-model="player1" placeholder="Nombre player 1">
       
       <label for="opcion1">Select personaje</label>
       <select ng-model="opcion1" id="opcion1" ng-change="metodo()" ng-options="x.id as x.name group by x.type for x in personajes" class="form-control"></select>  
+      
+      <div ng-if="imagen1 != ''">
+        <img src="{{ imagen1 }}" class="img-thumbnail" alt="no carga">
+      </div>
+
     </div>
 
-    <div class="col-sm-6">
+    <div class="col-md-6">
       <h1>P2 {{ player2 }}</h1>
 
       <div class="form-group">
         <span class="input-group-text" id="player2">Name:</span>
       </div>
-      <input class="form-control" type="text" aria-label="Default" aria-describedby="player2" ng-model="player2" placeholder="Nombre player 2">
+      <input uib-popover="Pon el nombre del jugador P2"  popover-trigger="'focus'" class="form-control" type="text" aria-label="Default" aria-describedby="player2" ng-model="player2" placeholder="Nombre player 2">
       
       <label for="opcion2">Select personaje</label>
       <select ng-model="opcion2" id="opcion2" ng-change="metodo()" ng-options="x.id as x.name group by x.type for x in personajes" class="form-control"></select>
-    </div>
-
-    <div class="col-sm-6" ng-if="imagen1 != ''">
-      <img src="{{ imagen1 }}" class="img-thumbnail" alt="no carga">
-    </div>
-    <div class="col-sm-6" ng-if="imagen2 != ''">
-      <img src="{{ imagen2 }}" class="img-thumbnail" alt="no carga">
-    </div>
-
-    <div class="col-sm-12 text-center">
-      <h4>{{ respuesta }}</h4>
+    
+      <div ng-if="imagen2 != ''">
+        <img src="{{ imagen2 }}" class="img-thumbnail" alt="no carga">
+      </div>
+    
     </div>
 
   </div>

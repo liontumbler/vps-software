@@ -1,7 +1,4 @@
-//var app = angular.module('myApp', []);
 app.controller('unoCtrl', function($scope) {
-
-  
 
   $scope.personajes = [
     {id: 0, type: 'no viviente', name: 'ROCA', simbolo: 'R', poder: ['L','T'], imagen: "../img/roca.jpeg"},
@@ -67,16 +64,18 @@ app.controller('unoCtrl', function($scope) {
 
       //validacion del contador
       if (con == 0 && con2 == 0 || con == con2) {
-        console.log("Empate!!");
+        //console.log("Empate!!");
         $scope.respuesta = "Empate!!";
       }else if (con > con2) {
-        console.log("Gana el player 1");
+        //console.log("Gana el player 1");
         $scope.respuesta = "Gana el P1: "+$scope.player1;
       }else if (con2 > con) {
-        console.log("Gana el player 2");
+        //console.log("Gana el player 2");
         $scope.respuesta = "Gana el P2 "+$scope.player2;
       }
 
     }
+    
   }
+
 });
