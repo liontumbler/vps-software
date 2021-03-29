@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+
+  <div ng-app="myApp" ng-controller="namesCtrl">
+
+    <p>The name is {{ lastName | uppercase }}</p>
+
+    <p>The name is {{ lastName | lowercase }}</p>
+
+    <ul>
+      <li ng-repeat="x in names | orderBy:'country'">
+        {{ x.name + ', ' + x.country }}
+      </li>
+    </ul>
+
+
+    <h1>Price: {{ price | currency }}</h1>
+
+    <ul>
+      <li ng-repeat="x in names | filter : 'i'">
+        {{ x }}
+      </li>
+    </ul>
+
+
+    <p><input type="text" ng-model="test"></p>
+
+    <ul>
+      <li ng-repeat="x in names | filter : test">
+        {{ x }}
+      </li>
+    </ul>
+
+
+    <table border="1" width="100%">
+      <tr>
+        <th ng-click="orderByMe('name')">Name</th>
+        <th ng-click="orderByMe('country')">Country</th>
+      </tr>
+      <tr ng-repeat="x in names | orderBy:myOrderBy">
+        <td>{{x.name}}</td>
+        <td>{{x.country}}</td>
+      </tr>
+    </table>
+
+
+    <ul>
+      <li ng-repeat="x in names">
+        {{x.name | myFormat}}
+      </li>
+    </ul>
+
+    
+  </div>
+
+  <script>
+    var app=angular.module('myApp', [])
+
+    app.filter('myFormat', function() {
+      return function(x) {
+        var i, c, txt = "";
+        for (i = 0; i < x.length; i++) {
+          c = x[i];
+          if (i % 2 == 0) {
+            c = c.toUpperCase();
+          }
+          txt += c;
+        }
+        return txt;
+      };
+    });
+
+    app.controller('namesCtrl', function($scope) {
+      $scope.price = 5;
+      $scope.lastName = 'un nombre';
+      $scope.names = [
+        {name:'Jani',country:'Norway'},
+        {name:'Hege',country:'Sweden'},
+        {name:'Kai',country:'Denmark'}
+      ];
+
+
+      $scope.orderByMe = function(x) {
+        $scope.myOrderBy = x;
+      }
+    });
+
+    
+  </script>
+
+</body>
+</html>

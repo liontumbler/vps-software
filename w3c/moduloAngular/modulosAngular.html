@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+
+<div ng-app="myApp" ng-controller="myCtrl">
+  {{ firstName + " " + lastName }}
+</div>
+
+<!--<div ng-app="myAppdos" w3-test-directive></div>-->
+
+<script>
+
+  /*var app = angular.module("myApp", []);
+  
+  app.controller("myCtrl", function($scope) {
+    $scope.firstName = "John";
+    $scope.lastName = "Doe";
+  });*/
+
+  var app2 = angular.module("myAppdos", []);
+
+  app2.directive("w3TestDirective", function() {
+    return {
+      template : "I was made in a directive constructor!"
+    };
+  });
+  
+</script>
+
+
+  
+<script src="myApp.js"></script>
+<script src="myCtrl.js"></script>
+
+
+
+
+
+
+</body>
+</html>

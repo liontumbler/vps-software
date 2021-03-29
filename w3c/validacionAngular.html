@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body >
+
+  <style>
+    input.ng-invalid {
+      background-color: pink;
+    }
+    input.ng-valid {
+      background-color: lightgreen;
+    }
+
+    form.ng-pristine {
+      background-color: lightblue;
+    }
+    form.ng-dirty {
+      background-color: pink;
+    }
+    </style>
+  
+  <!--<form name="myForm">
+    <input name="myInput" ng-model="myInput" required>
+  </form>
+  
+  <p>The input's valid state is:</p>
+  <h1>{{myForm.myInput.$valid}}</h1>-->
+
+  <!--<form name="myForm">
+    <input name="myInput2" ng-model="myInput2" type="email">
+    <input name="myName" ng-model="myName" required>
+    <span ng-show="myForm.myName.$touched && myForm.myName.$invalid">The name is required.</span>
+  </form>
+  
+  <p>The input's valid state is:</p>
+  <h1>{{myForm.myInput2.$valid}}</h1>-->
+
+  <h2>Validation Example</h2>
+
+<form  ng-app="myApp"  ng-controller="validateCtrl"
+  name="myForm" novalidate>
+
+  <p>Username:<br>
+    <input type="text" name="user" ng-model="user" required>
+    <span style="color:red" ng-show="myForm.user.$dirty && myForm.user.$invalid">
+    <span ng-show="myForm.user.$error.required">Username is required.</span>
+    </span>
+  </p>
+
+  <p>Email:<br>
+    <input type="email" name="email" ng-model="email" required>
+    <span style="color:red" ng-show="myForm.email.$dirty && myForm.email.$invalid">
+    <span ng-show="myForm.email.$error.required">Email is required.</span>
+    <span ng-show="myForm.email.$error.email">Invalid email address.</span>
+    </span>
+  </p>
+
+  <p>
+    <input type="submit"
+    ng-disabled="myForm.user.$dirty && myForm.user.$invalid ||
+    myForm.email.$dirty && myForm.email.$invalid">
+  </p>
+
+</form>
+
+<script>
+  var app = angular.module('myApp', []);
+  app.controller('validateCtrl', function($scope) {
+    $scope.user = 'John Doe';
+    $scope.email = 'john.doe@gmail.com';
+  });
+</script>
+
+</body>
+</html>

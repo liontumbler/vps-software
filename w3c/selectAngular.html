@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+  
+  <div ng-app="myApp" ng-controller="myCtrl">
+
+    <select ng-model="selectedName" ng-options="x for x in names">
+    </select>
+
+    <!--<select ng-model="selectedCar">
+      <option ng-repeat="x in cars" value="{{x.model}}">{{x.model}}</option>
+    </select>
+    
+    <h1>You selected: {{selectedCar}}</h1>-->
+
+    <!--<select ng-model="selectedCar">
+      <option ng-repeat="x in cars" ng-value="{{x}}">{{x.model}}</option>
+    </select>
+    
+    <h1>You selected a {{selectedCar.color}} {{selectedCar.model}}</h1>-->
+
+    <!--<select ng-model="selectedCar" ng-options="x.model for x in cars">
+    </select>
+    
+    <h1>You selected: {{selectedCar.model}}</h1>
+    <p>Its color is: {{selectedCar.color}}</p>-->
+
+    <!--<select ng-model="selectedCar" ng-options="x for (x, y) in cars2">
+    </select>
+    
+    <h1>You selected: {{selectedCar}}</h1>-->
+
+    <select ng-model="selectedCar" ng-options="y.brand for (x, y) in cars3">
+    </select>
+    <h1>You selected: {{selectedCar}}</h1>
+  </div>
+
+  
+  
+  <script>
+  var app = angular.module('myApp', []);
+  app.controller('myCtrl', function($scope) {
+    $scope.names = ["Emil", "Tobias", "Linus"];
+
+    $scope.cars = [
+      {model : "Ford Mustang", color : "red"},
+      {model : "Fiat 500", color : "white"},
+      {model : "Volvo XC90", color : "black"}
+    ];
+
+    $scope.cars2 = {
+      car01 : "Ford",
+      car02 : "Fiat",
+      car03 : "Volvo"
+    };
+
+    $scope.cars3 = {
+      car01 : {brand : "Ford", model : "Mustang", color : "red"},
+      car02 : {brand : "Fiat", model : "500", color : "white"},
+      car03 : {brand : "Volvo", model : "XC90", color : "black"}
+    };
+  });
+  
+  </script>
+
+</body>
+</html>

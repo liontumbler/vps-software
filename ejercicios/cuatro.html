@@ -1,0 +1,37 @@
+<div class="container">
+
+  <div class="row container">
+    <div class="col-sm-4">
+
+      <h1>N: {{n}}</h1>
+
+      <div class="form-group">
+        <span class="input-group-text" id="n">N:</span>
+      </div>
+      <input class="form-control" type="number" aria-label="Default" aria-describedby="n" ng-model="n" placeholder="Numero Entero" ng-change="metodo()">
+          
+    </div>
+    <div class="col-sm-5">
+      <h1>Matriz Ramdom</h1>
+
+      <table class="table">
+        <tr ng-repeat="x in array track by $index">
+          <td ng-repeat="n in x track by $index" >{{ n }}</td>
+        </tr>
+      </table>
+      
+    </div>
+    <div class="col-sm-3">
+      <h1>Diagonales</h1>
+      <ul ng-if="sumad1 > 0 && sumad2 > 0">
+        <li>
+          Suma diagonal Izquierda: {{ sumad1 }}
+        </li>
+        <li>
+          Suma diagonal Derecha: {{ sumad2 }}
+        </li>
+      </ul>
+    </div>
+    
+  </div>
+</div>

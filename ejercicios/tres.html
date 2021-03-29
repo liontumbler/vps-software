@@ -1,0 +1,38 @@
+<div class="container">
+  
+  <div class="row container">
+    <div class="col-sm-4">
+
+      <h1>N: {{n}}</h1>
+
+      <div class="form-group">
+        <span class="input-group-text" id="n">N:</span>
+      </div>
+      <input class="form-control" type="number" aria-label="Default" aria-describedby="n" ng-model="n" placeholder="Numero Entero" ng-change="mym()">
+        
+    </div>
+    <div class="col-sm-4">
+      <h1>Numeros Ramdom</h1>
+      <ul>
+        <li ng-repeat="x in array track by $index">
+          {{x}}
+        </li>
+      </ul>
+    </div>
+    <div class="col-sm-4">
+      <h1>Resultados</h1>
+
+      <ul ng-if="max >= 0 && min >= 0">
+        <li>
+          El suma Maxima es: {{ max }}
+        </li>
+        <li>
+          El suma Minima es: {{ min }}
+        </li>
+      </ul>
+    </div>
+    
+  </div>
+</div>
+  
+  

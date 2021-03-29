@@ -1,0 +1,37 @@
+<div class="container">
+  
+  <div class="row">
+
+    <div class="col-sm-4">
+      
+      <h1>N: {{n}}</h1>
+
+      <div class="form-group">
+        <span class="input-group-text" id="n">N:</span>
+      </div>
+      <input class="form-control" type="number" aria-label="Default" aria-describedby="n" ng-model="n" placeholder="Numero Entero" ng-change="metodo2()">
+      
+    </div>
+    <div class="col-sm-8">
+
+      <h1>Numeros Ramdom</h1>
+      <div class="row" ng-repeat="x in names" >
+
+        <div class="col-sm-6">
+          {{ x.a + ' + ' + x.b + ' = ' + x.c }}
+        </div>
+
+        <div class="col-sm-6">
+          <div class="progress">
+            <div class="progress-bar" role="progressbar" style="width: {{ x.grafica }}%" aria-valuenow="{{ x.grafica }}" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+    
+  </div>
+</div>
+  
+  

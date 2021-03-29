@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VPS Software</title>
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+  <!-- AngulaJS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+
+  <!-- Propia -->
+  <link rel="stylesheet" href="index.css">
+  
+</head>
+<body>
+
+  <div ng-app="myApp">
+
+    <nav class="navbar bg-primary ">
+      <h1 class="navbar-brand">VPS Software (Problemas de programación)</h1>
+    </nav>
+
+    <!-- Static navbar navbar-fixed-top-->
+    <nav class="container navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+
+          <ul class="nav navbar-nav">
+            <li><a href="#!" >piedra/papel/tijera</a></li>
+            <li><a href="#!dos" >Suma de arreglos</a></li>
+            <li><a href="#!tres" >Suma Mini-max</a></li>
+            <li><a href="#!cuatro" >Diferencia de la diagonal</a></li>
+          </ul>
+          
+        </div><!--/.nav-collapse class="active" ng-class="{'active': false}"-->
+      </div><!--/.container-fluid -->
+    </nav>
+
+    <ng-view></ng-view>
+
+  </div>
+
+
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+
+  <!-- Propia -->
+  <script src="index.js"></script>
+  <script src="controladorUno.js"></script>
+  <script src="controladorDos.js"></script>
+  <script src="controladorTres.js"></script>
+  <script src="controladorCuatro.js"></script>
+
+</body>
+</html>

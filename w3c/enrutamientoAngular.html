@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+<body>
+
+  
+
+  <div ng-app="myApp">
+
+    <p><a href="#/!">Main</a></p>
+    
+    <a href="#!london">Red</a>
+    <a href="#!paris">Green</a>
+    <!--<a href="#!blue">Blue</a>-->
+    <a href="#!banana">banana</a>
+
+    <a href="#">nada</a>
+    
+    <!--<div ng-view></div>-->
+    <!--<ng-view></ng-view>-->
+    <div class="ng-view"></div>
+    
+    
+  </div>
+
+    <script>
+      /*var app = angular.module("myApp", ["ngRoute"]);
+
+      app.config(function($routeProvider) {
+        $routeProvider
+        .when("/", {
+          templateUrl : "main.htm"
+        })
+        .when("/red", {
+          templateUrl : "red.htm"
+        })
+        .when("/green", {
+          templateUrl : "green.htm"
+        })
+        .when("/blue", {
+          templateUrl : "blue.htm"
+        });
+      });*/
+
+      /*var app = angular.module("myApp", ["ngRoute"]);
+      app.config(function($routeProvider) {
+        $routeProvider
+        .when("/", {
+          templateUrl : "main.htm"
+        })
+        .when("/london", {
+          templateUrl : "green.htm"
+        })
+        .when("/paris", {
+          templateUrl : "blue.htm"
+        });
+      });*/
+
+      var app = angular.module("myApp", ["ngRoute"]);
+      app.config(function($routeProvider) {
+        $routeProvider
+        /*.when("/", {
+          templateUrl : "main.htm"
+        })*/
+        .when("/london", {
+          templateUrl : "green.htm",
+          controller : "londonCtrl"
+        })
+        .when("/paris", {
+          templateUrl : "red.htm",
+          controller : "parisCtrl"
+        })
+        .when("/banana", {
+          template : "<h1>Banana</h1><p>Bananas contain around 75% water.</p>"
+        })
+        .otherwise({
+          template : "<h1>None</h1><p>Nothing has been selected</p>"
+        });
+      });
+
+      app.controller("londonCtrl", function ($scope) {
+        $scope.msg = "I love London";
+      });
+
+      app.controller("parisCtrl", function ($scope) {
+        $scope.msg = "I love Paris";
+      });
+    </script>
+    
+    
+
+</body>
+</html>

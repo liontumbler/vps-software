@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+
+  
+  <div ng-app="myApp" ng_controller="customersCtrl">
+    <h1>{{myUrl}}</h1>
+    <h1>{{myWelcome}}</h1>
+    <h1>{{myHeader}}</h1>
+    <h1>{{theTime}}</h1>
+  
+    <ul>
+      <li ng-repeat="x in vari">{{x | myFormat}}</li>
+    </ul>
+  </div>
+  <script>
+    var app = angular.module('myApp', []);
+    app.controller('customersCtrl', function($scope, $location) {
+        $scope.myUrl = $location.absUrl();
+    });
+
+    //no responde
+    var app1 = angular.module('myApp', []);
+    app1.controller('customersCtrl', function($scope, $http) {
+
+      $http.get("serviWelcome.htm").then(function (response) {
+        $scope.myWelcome = response.data;
+      });
+
+    });
+
+    var app2 = angular.module('myApp', []);
+    app2.controller('customersCtrl', function($scope, $timeout) {
+
+      $scope.myHeader = "Hello World!";
+      $timeout(function () {
+        $scope.myHeader = "How are you today?";
+      }, 2000);
+
+    });
+
+    var app3 = angular.module('myApp', []);
+    app3.controller('customersCtrl', function($scope, $interval) {
+
+      $scope.theTime = new Date().toLocaleTimeString();
+      $interval(function () {
+        $scope.theTime = new Date().toLocaleTimeString();
+      }, 1000);
+
+    });
+
+    app3.controller('customersCtrl', function($scope, cualquiera) {
+      //$scope.hex = cualquiera.myFunc(255);
+      $scope.vari = ["edwin", "dos", 255];
+    });
+
+    //crear uno propio
+    app3.service('cualquiera', function() {
+      this.myFunc = function (x) {
+        return x.toString(16);
+      }
+    });
+    
+
+    app3.filter('myFormat',['cualquiera', function(cualquiera) {
+      return function(x) {
+        return cualquiera.myFunc(x);
+      };
+    }]);
+  </script>
+
+</body>
+</html>

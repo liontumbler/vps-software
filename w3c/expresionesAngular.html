@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+
+<div ng-app="" ng-init="myCol='lightblue'; quantity=1;cost=5; firstName='John'; lastName='Doe'; person={firstName:'John',lastName:'Doe'}; points=[1,15,19,2,40]">
+
+  <input style="background-color:{{ myCol }}" ng-model="myCol">
+
+  <p>Total in dollar: {{ quantity * cost }}</p>
+  <p>Total in dollar: <span ng-bind="quantity * cost"></span></p>
+
+  <p>The name is {{ firstName + " " + lastName }}</p>
+  <p>The name is <span ng-bind="firstName + ' ' + lastName"></span></p>
+
+  <p>The name is {{ person.lastName }}</p>
+  <p>The name is <span ng-bind="person.lastName"></span></p>
+
+  <p>The third result is {{ points[2] }}</p>
+  <p>The third result is <span ng-bind="points[2]"></span></p>
+  
+</div>
+
+</body>
+</html>
