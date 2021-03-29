@@ -24,3 +24,11 @@ app.config(function($routeProvider) {
   
 });
 
+
+app.controller('CollapseDemoCtrl', function ($scope) {
+  $scope.isNavCollapsed = true;
+  $scope.isCollapsed = false;
+  $scope.isCollapsedHorizontal = false;
+});
+
+
