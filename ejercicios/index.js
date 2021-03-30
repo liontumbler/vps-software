@@ -1,4 +1,4 @@
-var app = angular.module("myApp", ['ngAnimate', 'ngRoute', 'ui.bootstrap']);
+var app = angular.module("myApp", ['ngAnimate', 'ngSanitize', 'ngRoute', 'ui.bootstrap']);
 app.config(function($routeProvider) {
 
   $routeProvider
@@ -19,7 +19,7 @@ app.config(function($routeProvider) {
     controller : "cuatroCtrl"
   })
   .otherwise({
-    template : "<h1>None</h1><p>Nothing has been selected</p>"
+    template : "<div class='text-center'><h1>Error 300</h1><p>Dígito o ingreso a una opción no permitida</p></div>"
   });
   
 });
@@ -27,8 +27,6 @@ app.config(function($routeProvider) {
 
 app.controller('CollapseDemoCtrl', function ($scope) {
   $scope.isNavCollapsed = true;
-  $scope.isCollapsed = false;
-  $scope.isCollapsedHorizontal = false;
 });
 
 
