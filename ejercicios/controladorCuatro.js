@@ -1,50 +1,100 @@
 app.controller('cuatroCtrl', function($scope) {
 
-  $scope.n = "";
-  $scope.sumad1 = 0;
-  $scope.sumad2 = 0;
+  let i;
+  let e;
+  var numero;
   
-  $scope.metodo = function () {
+  $scope.cuatro = {
+    n: '',
+    sumaUno: 0,
+    sumaDos: 0,
+    diferencia: 0,
+    matriz: [],
+    numerosUnoMatriz: [],
+    numerosDosMatriz: []
+  }
+  
+  $scope.correr = function () {
 
-    if ($scope.n % 1 == 0) {
+    if ($scope.cuatro.n % 1 == 0) {
 
-      $scope.array = [];
-      $scope.sumad1 = 0;
-      $scope.sumad2 = 0;
-      $scope.diferencia = 0;
+      $scope.cuatro.matriz = [];
 
-      //creo la matriz
-      let i;
-      let e;
-      for (i = 0; i < $scope.n; i++) {
-        $scope.array[i] = [];
-        
-        for (e = 0; e < $scope.n; e++) {
-          var numero = Math.floor(Math.random() * (50));
-          $scope.array[i].push(numero);
-        }
-      }
+      $scope.numerar();
 
-      //console.log($scope.array);
-      //selecion las diagonales y las sumo
-      for (i = 0; i < $scope.array.length; i++) {
-        for (e = 0; e < $scope.array[i].length; e++) {
-          if (i==e) {
-            $scope.sumad1 += $scope.array[i][e];
-            $scope.sumad2 += $scope.array[i][(($scope.array[i].length - 1) - e)];
-          }
-        }
-      }
-
-      $scope.diferencia = Math.abs(($scope.sumad1 - $scope.sumad2));
-
-      //console.log($scope.sumad1);
-      //console.log($scope.sumad2);
     } else {
       alert ("Solo numeros enteros positivos");
-      $scope.n = "";
+      $scope.cuatro.n = "";
     }
   
   }
 
+  $scope.escuchar = function () {
+    
+    $scope.cuatro.sumaUno = 0;
+    $scope.cuatro.sumaDos = 0;
+    for (i = 0; i < $scope.cuatro.matriz.length; i++) {
+      for (e = 0; e < $scope.cuatro.matriz[i].length; e++) {
+
+        if (i==e) {
+          $scope.cuatro.numerosUnoMatriz[i] = $scope.cuatro.matriz[i][e];
+          $scope.cuatro.numerosDosMatriz[i] = $scope.cuatro.matriz[i][(($scope.cuatro.matriz[i].length - 1) - e)];
+
+          $scope.cuatro.sumaUno += $scope.cuatro.matriz[i][e];
+          $scope.cuatro.sumaDos += $scope.cuatro.matriz[i][(($scope.cuatro.matriz[i].length - 1) - e)];
+        }
+      }
+    }
+
+    $scope.cuatro.diferencia = Math.abs(($scope.cuatro.sumaUno - $scope.cuatro.sumaDos));
+
+  }
+
+  $scope.limpiar = function () {
+
+    for (i = 0; i < $scope.cuatro.matriz.length; i++) {
+      for (e = 0; e < $scope.cuatro.matriz[i].length; e++) {
+        $scope.cuatro.matriz[i][e] = "";
+      }
+    }
+    $scope.cuatro.numerosUnoMatriz = [];
+    $scope.cuatro.numerosDosMatriz = [];
+    $scope.cuatro.sumaUno = 0;
+    $scope.cuatro.sumaDos = 0;
+    $scope.cuatro.diferencia = 0;
+  }
+
+  $scope.numerar = function () {
+    $scope.cuatro.numerosUnoMatriz = [];
+    $scope.cuatro.numerosDosMatriz = [];
+    $scope.cuatro.sumaUno = 0;
+    $scope.cuatro.sumaDos = 0;
+    $scope.cuatro.diferencia = 0;
+
+    //creo la matriz
+    for (i = 0; i < $scope.cuatro.n; i++) {
+      $scope.cuatro.matriz[i] = [];
+      
+      for (e = 0; e < $scope.cuatro.n; e++) {
+        numero = Math.floor(Math.random() * (50));
+        $scope.cuatro.matriz[i].push(numero);
+      }
+    }
+
+    for (i = 0; i < $scope.cuatro.matriz.length; i++) {
+      for (e = 0; e < $scope.cuatro.matriz[i].length; e++) {
+        if (i == e) {
+          $scope.cuatro.numerosUnoMatriz.push($scope.cuatro.matriz[i][e]);
+          $scope.cuatro.numerosDosMatriz.push($scope.cuatro.matriz[i][(($scope.cuatro.matriz[i].length - 1) - e)]);
+          $scope.cuatro.sumaUno += $scope.cuatro.matriz[i][e];
+          $scope.cuatro.sumaDos += $scope.cuatro.matriz[i][(($scope.cuatro.matriz[i].length - 1) - e)];
+        }
+      }
+    }
+
+    $scope.cuatro.diferencia = Math.abs(($scope.cuatro.sumaUno - $scope.cuatro.sumaDos));
+  }
+
 });
+
+

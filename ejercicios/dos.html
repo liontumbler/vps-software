@@ -4,18 +4,47 @@
 
     <div class="col-md-4">
       
-      <h1>N: {{ n }}</h1>
+      <h1>N: {{ dos.n }}</h1>
 
       <div class="form-group">
-        <span class="input-group-text" id="n">N:</span>
+        <span class="input-group-text" id="dos.n">N:</span>
       </div>
-      <input uib-popover="solo numeros enteros positivos" popover-trigger="'focus'" class="form-control" type="number" aria-label="Default" aria-describedby="n" ng-model="n" placeholder="Numero Entero" ng-change="metodo2()">
+      <input uib-popover="solo numeros enteros positivos" popover-trigger="'focus'" class="form-control" type="number" aria-label="Default" aria-describedby="dos.n" ng-model="dos.n" placeholder="Numero Entero" ng-change="crear()">
       
     </div>
-    <div class="col-md-8">
+    <div class="col-md-4">
 
-      <h1>Numeros Ramdom</h1>
-      <div class="row" ng-repeat="x in array" >
+      <h1>Numeros</h1>
+
+      <table class="table table-md table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">A</th>
+            <th scope="col">B</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="x in dos.arraySumas track by $index">
+            <td>{{ $index }}</td>
+            <td>
+              <input uib-popover="solo numeros enteros positivos" popover-trigger="'focus'" class="form-control" type="number" aria-label="Default" placeholder="Numero Entero A"  ng-model="dos.arraySumas[$index].a" ng-change="calcular()">
+            </td>
+            <td>
+              <input uib-popover="solo numeros enteros positivos" popover-trigger="'focus'" class="form-control" type="number" aria-label="Default" placeholder="Numero Entero B"  ng-model="dos.arraySumas[$index].b" ng-change="calcular()">
+            </td>
+          </tr>
+        </tbody>
+        
+      </table>
+
+      <button class="btn" ng-click="numerar()" ng-show="dos.arraySumas != 0">llenar al azar</button>
+      <button class="btn" ng-click="limpiar()" ng-show="dos.arraySumas != 0">Limpiar</button>
+
+    </div>
+    <div class="col-md-4">
+      <h1>Arreglos</h1>
+      <div class="row" ng-repeat="x in dos.arraySumas" >
 
         <div class="col-md-6">
           {{ x.a + ' + ' + x.b + ' = ' + x.c }}
@@ -29,13 +58,14 @@
           -->
 
           <uib-progressbar class="progress-striped active" value="x.grafica" type="info">
-            {{type}} <i ng-show="true">!!! Grafica !!!</i>
+            <i ng-show="true">!!! Grafica !!!</i>
           </uib-progressbar>
         </div>
 
       </div>
 
     </div>
+
     
   </div>
 

@@ -1,5 +1,12 @@
 app.controller('unoCtrl', function($scope) {
 
+  var hasta;
+  var hasta2;
+  var con;
+  var con2;
+  let e;
+  let a;
+
   $scope.personajes = [
     {id: 0, type: 'no viviente', name: 'ROCA', simbolo: 'R', poder: ['L','T'], imagen: "../img/roca.jpeg"},
     {id: 1, type: 'no viviente',  name: 'PAPEL', simbolo: 'P', poder: ['R','K'], imagen: "../img/papel.jpeg"},
@@ -8,70 +15,76 @@ app.controller('unoCtrl', function($scope) {
     {id: 4, type: 'viviente',  name: 'SPOCK', simbolo: 'K', poder: ['R','T'], imagen: "../img/spock.jpeg"}
   ];
 
-  $scope.player1 = "";
-  $scope.player2 = "";
-  $scope.opcion1 = "";
-  $scope.opcion2 = "";
-  $scope.respuesta = "";
-  $scope.imagen1 = "";
-  $scope.imagen2 = "";
+  $scope.uno={
+    player1:{
+      nombre: '',
+      opcion: '',
+      imagen: ''
+    },
+    player2:{
+      nombre: '',
+      opcion: '',
+      imagen: ''
+    },
+    respuesta: ''
+  };
+
+  $scope.cambiarImagen = function () {
+    //agregar imagen si es select esta lleno
+    if ($scope.uno.player1.opcion !== "") {
+      $scope.uno.player1.imagen = $scope.personajes[$scope.uno.player1.opcion].imagen;
+    }
+    if ($scope.uno.player2.opcion !== "") {
+      $scope.uno.player2.imagen = $scope.personajes[$scope.uno.player2.opcion].imagen;
+    }
+  }
 
   //metodo:
-  $scope.metodo = function() {
+  $scope.jugar = function () {
     //console.log($scope.personajes[$scope.opcion1].poder[0]);
 
-    //agregar imagen si es select esta lleno
-    if ($scope.opcion1 !== "") {
-      $scope.imagen1 = $scope.personajes[$scope.opcion1].imagen;
-    }
-    if ($scope.opcion2 !== "") {
-      $scope.imagen2 = $scope.personajes[$scope.opcion2].imagen;
-    }
-
     //valida si el nombre y la opcion de player 1 y 2 estan vacias
-    if ($scope.opcion1 === "" || $scope.player1 == "") {
-      $scope.respuesta = "Validar datos de player 1";
-    }else if ($scope.opcion2 === "" || $scope.player2 == "") {
-      $scope.respuesta = "Validar datos de player 2";
+    if ($scope.uno.player1.opcion === "" || $scope.uno.player1.nombre == "") {
+      $scope.uno.respuesta = "Validar datos de player 1";
+    }else if ($scope.uno.player2.opcion === "" || $scope.uno.player2.nombre == "") {
+      $scope.uno.respuesta = "Validar datos de player 2";
     }else{
 
       //contadores que determinan quien es el ganador
-      var con = 0;
-      var con2 = 0;
+      con = 0;
+      con2 = 0;
 
       //valida si el player uno le gana al dos
-      let e;
-      var hasta = $scope.personajes[$scope.opcion1].poder.length;
+      hasta = $scope.personajes[$scope.uno.player1.opcion].poder.length;
       for (e = 0; e < hasta; e++) {
-        if ($scope.personajes[$scope.opcion1].poder[e] == $scope.personajes[$scope.opcion2].simbolo) {
+        if ($scope.personajes[$scope.uno.player1.opcion].poder[e] == $scope.personajes[$scope.uno.player2.opcion].simbolo) {
           con = 1;
         }
       }
 
       //valida si el player dos le gana al uno
-      let a;
-      var hasta2 = $scope.personajes[$scope.opcion2].poder.length;
+      hasta2 = $scope.personajes[$scope.uno.player2.opcion].poder.length;
       for (a = 0; a < hasta2; a++) {
-        if ($scope.personajes[$scope.opcion2].poder[a] == $scope.personajes[$scope.opcion1].simbolo) {
+        if ($scope.personajes[$scope.uno.player2.opcion].poder[a] == $scope.personajes[$scope.uno.player1.opcion].simbolo) {
           con2 = 1;
         }
 
         //Intente cambiar el if anterior a un if terniario, si corrio pero al momento de hacer la validacion la hace mal, por que?
         //lo intente de dos formas y las dos no arrojaron error pero validan igual, osa mal
-        //$scope.personajes[$scope.opcion2].poder[a] == $scope.personajes[$scope.opcion1].simbolo ? con2 = 1 : con2 = 0;
-        //con2 = $scope.personajes[$scope.opcion2].poder[a] == $scope.personajes[$scope.opcion1].simbolo ? 1 : 0;
+        //$scope.personajes[$scope.uno.player2.opcion].poder[a] == $scope.personajes[$scope.uno.player1.opcion].simbolo ? con2 = 1 : con2 = 0;
+        //con2 = $scope.personajes[$scope.uno.player2.opcion].poder[a] == $scope.personajes[$scope.uno.player1.opcion].simbolo ? 1 : 0;
       }
 
       //validacion del contador
       if (con == 0 && con2 == 0 || con == con2) {
         //console.log("Empate!!");
-        $scope.respuesta = "Empate!!";
+        $scope.uno.respuesta = "Empate!!";
       }else if (con > con2) {
         //console.log("Gana el player 1");
-        $scope.respuesta = "Gana el P1: "+$scope.player1;
+        $scope.uno.respuesta = "Gana el P1: "+$scope.uno.player1.nombre;
       }else if (con2 > con) {
         //console.log("Gana el player 2");
-        $scope.respuesta = "Gana el P2 "+$scope.player2;
+        $scope.uno.respuesta = "Gana el P2 "+$scope.uno.player2.nombre;
       }
 
     }

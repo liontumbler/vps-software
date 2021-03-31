@@ -3,31 +3,56 @@
   <div class="row container">
     <div class="col-md-4">
 
-      <h1>N: {{ n }}</h1>
+      <h1>N: {{ tres.n }}</h1>
 
       <div class="form-group">
-        <span class="input-group-text" id="n">N:</span>
+        <span class="input-group-text" id="tres.n">N:</span>
       </div>
-      <input uib-popover="solo numeros enteros positivos" popover-trigger="'focus'" class="form-control" type="number" aria-label="Default" aria-describedby="n" ng-model="n" placeholder="Numero Entero" ng-change="mym()">
+      <input uib-popover="solo numeros enteros positivos" popover-trigger="'focus'" class="form-control" type="number" aria-label="Default" aria-describedby="tres.n" ng-model="tres.n" placeholder="Numero Entero" ng-change="calcular()">
         
     </div>
     <div class="col-md-4">
-      <h1>Numeros Ramdom</h1>
+
+      <h1>Numeros Random</h1>
       <ul>
-        <li ng-repeat="x in array track by $index">
-          {{x}}
+        <li ng-repeat="x in tres.arrayNumeros track by $index">
+          <input uib-popover="solo numeros enteros positivos" popover-trigger="'focus'" class="form-control" type="number" aria-label="Default" aria-describedby="tres.arrayNumeros[$index]" ng-model="tres.arrayNumeros[$index]" placeholder="Numero Entero" ng-change="escuchar()">
         </li>
       </ul>
+      <button class="btn" ng-click="numerar()" ng-show="tres.arrayNumeros.length != 0">llenar al azar</button>
+      <button class="btn" ng-click="limpiar()" ng-show="tres.arrayNumeros.length != 0">Limpiar</button>
+      <hr>
+      <table class="table table-md table-bordered" ng-show="tres.arrayNumeros.length != 0">
+        <thead>
+          <tr>
+            <th scope="col">No se cuenta</th>
+            <th scope="col">Operacion</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="x in tres.arrayNumeros track by $index">
+            <td>{{ x }}</td>
+            <td>
+              <spam ng-repeat="i in tres.arrayCon[$index] track by $index" >{{ i }} <span ng-if="$index != (tres.arrayCon[$index].length - 1)">+</span>  </spam> 
+
+              = {{tres.sumas[$index]}}
+              
+            </td>
+          </tr>
+        </tbody>
+        
+      </table>
+
     </div>
     <div class="col-md-4">
       <h1>Resultados</h1>
 
-      <ul ng-if="max >= 0 && min >= 0">
+      <ul ng-if="tres.max >= 0 && tres.min >= 0">
         <li>
-          El suma Maxima es: {{ max }}
+          La suma Maxima es: {{ tres.max }}
         </li>
         <li>
-          El suma Minima es: {{ min }}
+          La suma Minima es: {{ tres.min }}
         </li>
       </ul>
     </div>

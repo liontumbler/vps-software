@@ -3,12 +3,12 @@
   <div class="row container">
     <div class="col-md-4">
 
-      <h1>N: {{ n }}</h1>
+      <h1>N: {{ cuatro.n }}</h1>
 
       <div class="form-group">
-        <span class="input-group-text" id="n">N:</span>
+        <span class="input-group-text" id="cuatro.n">N:</span>
       </div>
-      <input uib-popover="solo numeros enteros positivos" popover-trigger="'focus'" class="form-control" type="number" aria-label="Default" aria-describedby="n" ng-model="n" placeholder="Numero Entero" ng-change="metodo()">
+      <input uib-popover="solo numeros enteros positivos" popover-trigger="'focus'" class="form-control" type="number" aria-label="Default" aria-describedby="cuatro.n" ng-model="cuatro.n" placeholder="Numero Entero" ng-change="correr()">
           
     </div>
     <div class="col-md-5">
@@ -16,24 +16,39 @@
 
       <div class="table-responsive">
         <table class="table table-md table-bordered">
-          <tr ng-repeat="x in array track by $index">
-            <td ng-repeat="i in x track by $index" >{{ i }}</td>
+          <tr ng-repeat="x in cuatro.matriz track by $index">
+            <td ng-repeat="i in x track by $index" >
+              <input uib-popover="solo numeros enteros positivos" popover-trigger="'focus'" class="form-control" type="number" aria-label="Default" aria-describedby="x[$index]" ng-model="x[$index]" placeholder="Numero Entero" ng-change="escuchar()">
+            </td>
           </tr>
         </table>
+      </div>
+
+      <button class="btn" ng-click="numerar()" ng-show="cuatro.matriz.length != 0">llenar al azar</button>
+      <button class="btn" ng-click="limpiar()" ng-show="cuatro.matriz.length != 0">Limpiar</button>
+
+      <div ng-show="cuatro.matriz.length != 0">
+        <h3>sumas</h3>
+        <p>
+          <spam ng-repeat="x in cuatro.numerosUnoMatriz track by $index">{{ x }} <span ng-if="$index < cuatro.numerosUnoMatriz.length - 1">+</span> </spam> = {{ cuatro.sumaUno }}
+        </p>
+        <p>
+          <spam ng-repeat="x in cuatro.numerosDosMatriz track by $index">{{ x }} <span ng-if="$index < cuatro.numerosDosMatriz.length - 1">+</span> </spam> = {{ cuatro.sumaDos }}
+        </p>
       </div>
       
     </div>
     <div class="col-md-3">
       <h1>Diagonales</h1>
-      <ul ng-if="sumad1 > 0 && sumad2 > 0">
+      <ul ng-if="cuatro.sumaUno > 0 && cuatro.sumaDos > 0">
         <li>
-          Suma diagonal Izquierda: {{ sumad1 }}
+          Suma diagonal Izquierda: {{ cuatro.sumaUno }}
         </li>
         <li>
-          Suma diagonal Derecha: {{ sumad2 }}
+          Suma diagonal Derecha: {{ cuatro.sumaDos }}
         </li>
         <li>
-          El valor absoluto de la diferencia de |{{ sumad1 }} - {{ sumad2 }}| es {{ diferencia }}
+          El valor absoluto de la diferencia de |{{ cuatro.sumaUno }} - {{ cuatro.sumaDos }}| es {{ cuatro.diferencia }}
         </li>
       </ul>
     </div>
