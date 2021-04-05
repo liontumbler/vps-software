@@ -3,23 +3,23 @@ app.config(function($routeProvider) {
 
   $routeProvider
   .when("/", {
-    templateUrl : "uno.html",
+    templateUrl : "views/uno.html",
     controller : "unoCtrl"
   })
   .when("/dos", {
-    templateUrl : "dos.html",
+    templateUrl : "views/dos.html",
     controller : "dosCtrl"
   })
   .when("/tres", {
-    templateUrl : "tres.html",
+    templateUrl : "views/tres.html",
     controller : "tresCtrl"
   })
   .when("/cuatro", {
-    templateUrl : "cuatro.html",
+    templateUrl : "views/cuatro.html",
     controller : "cuatroCtrl"
   })
   .when("/ejerConsumoDb", {
-    templateUrl : "ejerConsumoDb.html",
+    templateUrl : "views/ejerConsumoDb.html",
     controller : "ejerConsumoDbCotroller"
   })
   .otherwise({

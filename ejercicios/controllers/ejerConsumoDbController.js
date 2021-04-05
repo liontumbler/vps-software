@@ -46,23 +46,23 @@ app.controller('ejerConsumoDbCotroller', function($uibModal, $log, $http) {
   modal.reverseProductos = false;
   modal.reverseClientes = false;
 
-  //optiene todos los productos
+  //obtiene todos los productos
   $http.get("https://services.odata.org/V3/Northwind/Northwind.svc/Products?$format=json")
   .then(function(response) {
     modal.tablas.productos.todos = response.data.value;
   });
 
-  //optiene todos los customers
+  //obtiene todos los customers
   $http.get("https://services.odata.org/V3/Northwind/Northwind.svc/Customers?$format=json")
   .then(function(response) {
     modal.tablas.clientes.todos = response.data.value;
   });
 
-  //optiene un producto por id
+  //obtiene un producto por id
   modal.mostrarDetallesProducto = function (id) {
     $http.get("https://services.odata.org/V3/Northwind/Northwind.svc/Products?$filter=ProductID eq "+id+"&$format=json")
     .then(function(response) {
-      //optiene el producto
+      //obtiene el producto
       modal.tablas.productos.uno = response.data.value;
       //inicia y abre el modal
       var modalInstance = $uibModal.open({
@@ -73,7 +73,7 @@ app.controller('ejerConsumoDbCotroller', function($uibModal, $log, $http) {
         keyboard :false,
         ariaLabelledBy: 'modal-title',
         ariaDescribedBy: 'modal-body',
-        templateUrl: 'modalProducto.html',
+        templateUrl: 'views/modal/modalProducto.html',
         controller: 'ModalCtrlProducto',
         controllerAs: 'modal',
         size: 'lg',
@@ -91,7 +91,7 @@ app.controller('ejerConsumoDbCotroller', function($uibModal, $log, $http) {
     alert("escucho pa editar "+id);
   }
 
-  modal.emininarProducto = function (id) {
+  modal.elimininarProducto = function (id) {
 
     if (confirm("Seguro desea eliminar id: "+id)) {
 
@@ -108,16 +108,20 @@ app.controller('ejerConsumoDbCotroller', function($uibModal, $log, $http) {
 
   }
 
+  //ordena los productos de desc/asc segun la x que le alla llegado (x == cabecera clicleada)
   modal.orderByMeProductos = function(x) {
+    //if terniario: propertyName es igual a x, si pasa cambia el valor de reverseProductos a true/false, si no propertyName queda igual a x que es el elemento clicleado
+    //esto se hace para cuadrar el desc/asc
     modal.reverseProductos = (modal.propertyName === x) ? !modal.reverseProductos : modal.propertyName = x;
+    //ordena los productos segun x
     modal.myOrderByProductos = x;
   }
 
-  //optiene un customer por id
+  //obtiene un customer por id
   modal.mostrarDetallesCliente = function (id) {
     $http.get("https://services.odata.org/V3/Northwind/Northwind.svc/Customers?$filter=CustomerID eq '"+id+"'&$format=json")
     .then(function(response) {
-      //optiene el customer
+      //obtiene el customer
       modal.tablas.clientes.uno = response.data.value;
       //inicia y abre el modal
       var modalInstance = $uibModal.open({
@@ -128,7 +132,7 @@ app.controller('ejerConsumoDbCotroller', function($uibModal, $log, $http) {
         keyboard :false,
         ariaLabelledBy: 'modal-title',
         ariaDescribedBy: 'modal-body',
-        templateUrl: 'modalCliente.html',
+        templateUrl: 'views/modal/modalCliente.html',
         controller: 'ModalCtrlCliente',
         controllerAs: 'modal',
         size: 'lg',
@@ -146,7 +150,7 @@ app.controller('ejerConsumoDbCotroller', function($uibModal, $log, $http) {
     alert("escucho pa editar "+id);
   }
 
-  modal.emininarCliente = function (id) {
+  modal.elimininarCliente = function (id) {
     
     if (confirm("Seguro desea eliminar id: "+id)) {
       alert("escucho pa eliminar "+id);
@@ -156,8 +160,12 @@ app.controller('ejerConsumoDbCotroller', function($uibModal, $log, $http) {
     
   }
 
+  //ordena los clientes de desc/asc segun la x que le alla llegado (x == cabecera clicleada)
   modal.orderByMeClientes = function(x) {
+    //if terniario: propertyName es igual a x, si pasa cambia el valor de reverseClientes a true/false, si no propertyName queda igual a x que es el elemento clicleado
+    //esto se hace para cuadrar el desc/asc
     modal.reverseClientes = (modal.propertyName === x) ? !modal.reverseClientes : modal.propertyName = x;
+    //ordena los productos segun x
     modal.myOrderByClientes = x;
   }
 
