@@ -1,0 +1,27 @@
+<div class="modal-header">
+  <h3 class="modal-title" id="modal-title">Producto en detalle</h3>
+</div>
+<div class="modal-body" id="modal-body">
+  <div class="table-responsive col-md-12">
+    
+    <table class="table table-md table-striped">
+      <thead>
+        <tr>
+          <th scope="col" ng-repeat="x in modal.productos[0]">{{x}}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="x in modal.productos[1]">
+          <td ng-repeat="i in x">
+            {{i}}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-primary" type="button" ng-click="modal.ok()">OK</button>
+  <button class="btn btn-warning" type="button" ng-click="modal.cancel()">Cancel</button>
+</div>

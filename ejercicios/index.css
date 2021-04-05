@@ -1,1 +1,14 @@
-.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+.nav, .pagination, .carousel, .panel-title a, .glyphicon{ 
+  cursor: pointer; 
+}
+
+.glyphicon:hover{
+  color: #327ab7;
+}
+
+.sortorder:after {
+  content: '\25b2';   
+}
+.sortorder.reverse:after {
+  content: '\25bc';   
+}

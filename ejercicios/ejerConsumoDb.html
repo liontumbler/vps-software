@@ -1,0 +1,70 @@
+<div ng-controller="ejerConsumoDbCotroller as modal" class="row">
+  
+  <div class="table-responsive col-md-6">
+    
+    <input class="form-control" type="text" aria-label="Default" aria-describedby="modal.filtroProducto" ng-model="modal.filtroProducto" placeholder="Filtrar Producto:">
+    <table class="table table-md table-striped">
+
+      <thead>
+        <tr>
+          <th ng-repeat="x in [0,1]" scope="col" ng-click="modal.orderByMeProductos(modal.tablas.productos.cabecera[x])">{{modal.tablas.productos.cabecera[x]}}
+            <span class="sortorder" ng-show="modal.propertyName == modal.tablas.productos.cabecera[x]" ng-class="{reverse: !modal.reverseProductos}"></span>
+          </th>
+          <th scope="col">Acción</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr ng-repeat="x in modal.tablas.productos.todos | filter : modal.filtroProducto | orderBy : modal.myOrderByProductos : modal.reverseProductos">
+          <td >
+            {{x.ProductID}}
+          </td>
+          <td >
+            {{x.ProductName}}
+          </td>
+          <td>
+            <span class="glyphicon glyphicon-eye-open" ng-click="modal.mostrarDetallesProducto(x.ProductID)" title="Ver"></span>
+            <span class="glyphicon glyphicon-edit" ng-click="modal.editarProducto(x.ProductID)" title="Editar"></span>
+            <span class="glyphicon glyphicon-trash" ng-click="modal.emininarProducto(x.ProductID)" title="Eliminar"></span>
+          </td>
+        </tr>
+      </tbody>
+
+    </table>
+    
+  </div>
+
+  <div class="table-responsive col-md-6">
+    
+    <input class="form-control" type="text" aria-label="Default" aria-describedby="modal.filtroCliente" ng-model="modal.filtroCliente"  placeholder="Filtrar cliente:">
+
+    <table class="table table-md table-striped">
+      <thead>
+        <tr>
+          <th ng-repeat="x in [0,2]" scope="col" ng-click="modal.orderByMeClientes(modal.tablas.clientes.cabecera[x])">{{modal.tablas.clientes.cabecera[x]}}
+            <span class="sortorder" ng-show="modal.propertyName === modal.tablas.clientes.cabecera[x]" ng-class="{reverse: !modal.reverseClientes}"></span>
+          </th>
+          <th scope="col">Acción</th>
+        </tr>
+      </thead>
+      
+      <tbody>
+        <tr ng-repeat="x in modal.tablas.clientes.todos | filter : modal.filtroCliente | orderBy : modal.myOrderByClientes : modal.reverseClientes">
+          <td >
+            {{x.CustomerID}}
+          </td>
+          <td >
+            {{x.ContactName}}
+          </td>
+          <td>
+            <span class="glyphicon glyphicon-eye-open" ng-click="modal.mostrarDetallesCliente(x.CustomerID)" title="Ver"></span>
+            <span class="glyphicon glyphicon-edit" ng-click="modal.editarCliente(x.CustomerID)" title="Editar"></span>
+            <span class="glyphicon glyphicon-trash" ng-click="modal.emininarCliente(x.CustomerID)" title="Eliminar"></span>
+          </td>
+        </tr>
+      </tbody>
+
+    </table>
+  </div>
+  
+</div>

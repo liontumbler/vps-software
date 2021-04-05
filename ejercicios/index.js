@@ -18,6 +18,10 @@ app.config(function($routeProvider) {
     templateUrl : "cuatro.html",
     controller : "cuatroCtrl"
   })
+  .when("/ejerConsumoDb", {
+    templateUrl : "ejerConsumoDb.html",
+    controller : "ejerConsumoDbCotroller"
+  })
   .otherwise({
     template : "<div class='text-center'><h1>Error 300</h1><p>Dígito o ingreso a una opción no permitida</p></div>"
   });
@@ -25,7 +29,7 @@ app.config(function($routeProvider) {
 });
 
 
-app.controller('CollapseDemoCtrl', function ($scope) {
+app.controller('CollapseCtrl', function ($scope) {
   $scope.isNavCollapsed = true;
 });
 

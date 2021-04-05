@@ -52,16 +52,18 @@ app.controller('cuatroCtrl', function($scope) {
 
   $scope.limpiar = function () {
 
-    for (i = 0; i < $scope.cuatro.matriz.length; i++) {
-      for (e = 0; e < $scope.cuatro.matriz[i].length; e++) {
-        $scope.cuatro.matriz[i][e] = "";
-      }
-    }
     $scope.cuatro.numerosUnoMatriz = [];
     $scope.cuatro.numerosDosMatriz = [];
     $scope.cuatro.sumaUno = 0;
     $scope.cuatro.sumaDos = 0;
     $scope.cuatro.diferencia = 0;
+
+    for (i = 0; i < $scope.cuatro.matriz.length; i++) {
+      for (e = 0; e < $scope.cuatro.matriz[i].length; e++) {
+        $scope.cuatro.matriz[i][e] = "";
+      }
+    }
+    
   }
 
   $scope.numerar = function () {

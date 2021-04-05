@@ -1,0 +1,25 @@
+<div class="modal-header">
+  <h3 class="modal-title" id="modal-title">cliente en detalle</h3>
+</div>
+<div class="modal-body" id="modal-body">
+  <div class="table-responsive col-md-12">
+    <table class="table table-md table-striped">
+    
+      <tbody ng-repeat="x in modal.clientes[1]">
+        <tr  ng-repeat="i in x">
+          <th scope="row">
+            {{modal.clientes[0][$index]}}
+          </th>
+          <td>
+            {{i}}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+<div class="modal-footer">
+  <button class="btn btn-primary" type="button" ng-click="modal.ok()">OK</button>
+  <button class="btn btn-warning" type="button" ng-click="modal.cancel()">Cancel</button>
+</div>
