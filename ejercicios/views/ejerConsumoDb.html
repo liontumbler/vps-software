@@ -15,6 +15,7 @@
       </thead>
 
       <tbody>
+        <!--limitTo : 3 : 1-->
         <tr ng-repeat="x in modal.tablas.productos.todos | filter : modal.filtroProducto | orderBy : modal.myOrderByProductos : modal.reverseProductos">
           <td >
             {{x.ProductID}}
